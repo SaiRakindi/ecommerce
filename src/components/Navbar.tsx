@@ -66,33 +66,33 @@ const Navbar = () => {
           <span className="mb-1 block h-0.5 w-6 bg-dark-900"></span>
           <span className="block h-0.5 w-6 bg-dark-900"></span>
         </button>
-
-        <div
-          id="mobile-menu"
-          className={`border-t border-light-300 md:hidden ${
-            open ? "block" : "hidden"
-          }`}
-        >
-          <ul className="space-y-2 px-4 py-3">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block py-2 text-body text-dark-900 hover:text-dark-700"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-
-            <li className="flex items-center justify-between pt-2">
-              <button className="text-body">Search</button>
-              <button className="text-body">My Cart(2)</button>
-            </li>
-          </ul>
-        </div>
       </nav>
+
+      <div
+        id="mobile-menu"
+        className={`border-t border-light-300 md:hidden ${
+          open ? "block" : "hidden"
+        }`}
+      >
+        <ul className="space-y-2 px-4 py-3">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="block py-2 text-body text-dark-900 hover:text-dark-700"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+
+          <li className="flex items-center justify-between pt-2">
+            <button className="text-body">Search</button>
+            <button className="text-body">My Cart(2)</button>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 };
