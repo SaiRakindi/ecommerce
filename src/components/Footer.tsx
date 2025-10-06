@@ -1,7 +1,5 @@
-import { closeSync } from "fs";
 import Image from "next/image";
 import Link from "next/link";
-import { L } from "node_modules/better-auth/dist/shared/better-auth.jwa4Tx7v";
 import React from "react";
 
 const columns = [
