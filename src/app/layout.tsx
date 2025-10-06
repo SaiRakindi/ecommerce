@@ -9,10 +9,10 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: "Nike",
-  description: "An e-commerce platform for Nike products",
+  description: "An E-commerce platform for Nike Shoes",
 };
 
-export default function RootLayout({
+export default function RootShell({
   children,
 }: Readonly<{
   children: React.ReactNode;
