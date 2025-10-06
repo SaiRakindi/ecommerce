@@ -17,7 +17,21 @@ export default function AuthForm({ mode, onSubmit }: Props) {
 
   const router = useRouter();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const result = await onSubmit(formData);
+
+      if (result?.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="space-y-6">
