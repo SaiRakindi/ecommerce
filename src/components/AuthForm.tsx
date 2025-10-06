@@ -25,7 +25,7 @@ export default function AuthForm({ mode, onSubmit }: Props) {
         <p className="text-caption text-dark-700">
           {mode === "sign-in"
             ? "Don't have an account? "
-            : "Alreay have an account?"}
+            : "Already have an account? "}
 
           <Link
             href={mode === "sign-in" ? "/sign-up" : "/sign-in"}
