@@ -5,7 +5,7 @@ import {
   removeParams,
   toggleArrayParam,
 } from "@/lib/utils/query";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 const GENDERS = ["men", "women", "unisex"] as const;
@@ -24,7 +24,7 @@ export default function Filters() {
   const router = useRouter();
 
   const pathname = usePathname();
-  const searchParams = new URLSearchParams();
+  const searchParams = useSearchParams();
   const search = useMemo(() => `?${searchParams.toString()}`, [searchParams]);
 
   const [open, setOpen] = useState(false);
@@ -79,7 +79,7 @@ export default function Filters() {
       >
         <span>{title}</span>
         <span className="text-caption text-dark-700">
-          {expanded[k] ? "-" : "+"}
+          {expanded[k] ? "−" : "+"}
         </span>
       </button>
 
