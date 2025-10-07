@@ -179,32 +179,33 @@ export default function Filters() {
             })}
           </ul>
         </Group>
-
         <Group
           title={`Color ${activeCounts.color ? `(${activeCounts.color})` : ""}`}
           k="color"
         >
-          {COLORS.map((color) => {
-            const checked = getArrayParam(search, "color").includes(color);
+          <ul className="grid grid-cols-2 gap-2">
+            {COLORS.map((color) => {
+              const checked = getArrayParam(search, "color").includes(color);
 
-            return (
-              <li key={color} className="flex items-center gap-2">
-                <input
-                  id={`color-${color}`}
-                  type="checkbox"
-                  className="h-4 w-4 accent-dark-900"
-                  checked={checked}
-                  onChange={() => onToggle("color", color)}
-                />
-                <label
-                  htmlFor={`color-${color}`}
-                  className="text-body capitalize"
-                >
-                  {color}
-                </label>
-              </li>
-            );
-          })}
+              return (
+                <li key={color} className="flex items-center gap-2">
+                  <input
+                    id={`color-${color}`}
+                    type="checkbox"
+                    className="h-4 w-4 accent-dark-900"
+                    checked={checked}
+                    onChange={() => onToggle("color", color)}
+                  />
+                  <label
+                    htmlFor={`color-${color}`}
+                    className="text-body capitalize"
+                  >
+                    {color}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
         </Group>
 
         <Group
