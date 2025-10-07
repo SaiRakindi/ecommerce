@@ -5,9 +5,18 @@ import {
   removeParams,
   toggleArrayParam,
 } from "@/lib/utils/query";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+
+const GENDERS = ["men", "women", "unisex"] as const;
+const SIZES = ["XS", "S", "M", "L", "XL"] as const;
+const COLORS = ["black", "white", "red", "green", "blue", "grey"] as const;
+const PRICES = [
+  { id: "0-50", label: "$0 - $50" },
+  { id: "50-100", label: "$50 - $100" },
+  { id: "100-150", label: "$100 - $150" },
+  { id: "150-", label: "Over $150" },
+] as const;
 
 type GroupKey = "gender" | "size" | "color" | "price";
 
@@ -54,6 +63,35 @@ export default function Filters() {
     router.push(url, { scroll: false });
   };
 
+  const Group = ({
+    title,
+    children,
+    key,
+  }: {
+    title: string;
+    children: React.ReactNode;
+    key: GroupKey;
+  }) => (
+    <div className="border-b border-light-300 py-4">
+      <button
+        className="flex w-full items-center justify-between text-body-medium text-dark-900"
+        onClick={() => setExpanded((prev) => ({ ...prev, [key]: !prev[key] }))}
+      >
+        <span>{title}</span>
+        <span className="text-caption text-dark-700">
+          {expanded[key] ? "-" : "+"}
+        </span>
+      </button>
+
+      <div
+        id={`${key}-section`}
+        className={`${expanded[key] ? "mt-3 block" : "hidden"}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div className="mb-4 flex items-center justify-between md:hidden">
@@ -72,6 +110,31 @@ export default function Filters() {
           Clear All
         </button>
       </div>
+
+      <Group
+        title={`Gender ${
+          activeCounts.gender ? `(${activeCounts.gender})` : ""
+        }`}
+        key="gender"
+      >
+        <ul className="space-y-2">
+          {GENDERS.map((gender) => {
+            const checked = getArrayParam(search, "gender").includes(gender);
+
+            return (
+              <li key={gender} className="flex items-center gap-2">
+                <input
+                  id={`gender-${gender}`}
+                  type="checkbox"
+                  className="h-4 w-4 accent-dark-900"
+                  checked={checked}
+                  onChange={() => onToggle("gender" as GroupKey, gender)}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </Group>
     </>
   );
 }
