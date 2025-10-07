@@ -66,26 +66,26 @@ export default function Filters() {
   const Group = ({
     title,
     children,
-    key,
+    k,
   }: {
     title: string;
     children: React.ReactNode;
-    key: GroupKey;
+    k: GroupKey;
   }) => (
     <div className="border-b border-light-300 py-4">
       <button
         className="flex w-full items-center justify-between text-body-medium text-dark-900"
-        onClick={() => setExpanded((prev) => ({ ...prev, [key]: !prev[key] }))}
+        onClick={() => setExpanded((prev) => ({ ...prev, [k]: !prev[k] }))}
       >
         <span>{title}</span>
         <span className="text-caption text-dark-700">
-          {expanded[key] ? "-" : "+"}
+          {expanded[k] ? "-" : "+"}
         </span>
       </button>
 
       <div
-        id={`${key}-section`}
-        className={`${expanded[key] ? "mt-3 block" : "hidden"}`}
+        id={`${k}-section`}
+        className={`${expanded[k] ? "mt-3 block" : "hidden"}`}
       >
         {children}
       </div>
@@ -115,7 +115,7 @@ export default function Filters() {
         title={`Gender ${
           activeCounts.gender ? `(${activeCounts.gender})` : ""
         }`}
-        key="gender"
+        k="gender"
       >
         <ul className="space-y-2">
           {GENDERS.map((gender) => {
